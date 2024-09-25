@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import moment from 'moment'; // For formatting the date
 
 // Axios instance for API calls
 const api = axios.create({
@@ -26,7 +25,7 @@ const Dashboard = () => {
           withCredentials: true, // Include cookies if needed
         });
 
-        setUrls(response.data.urls); // Assuming the backend sends a list of URLs with clickCount and createdAt
+        setUrls(response.data.urls); // Assuming the backend sends a list of URLs
       } catch (err) {
         console.error('Error fetching URLs:', err);
         setError('Failed to fetch URLs');
@@ -41,7 +40,7 @@ const Dashboard = () => {
     const token = localStorage.getItem('jwtToken');
 
     try {
-      await api.delete(`http://localhost:3000/delete/urls/${id}`, {
+      await api.delete(`http://localhost:3000//urls/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,  // JWT token for authorization
         },
@@ -69,7 +68,7 @@ const Dashboard = () => {
   };
 
   const handleNavigateToShorten = () => {
-    navigate('/shorten'); // Navigate to the URL shortener page
+    navigate('/api/shorten'); // Updated to remove /api
   };
 
   return (
@@ -98,20 +97,12 @@ const Dashboard = () => {
                 {`http://localhost:3000/${url.shortUrl}`}
               </a>
             </p>
-            {/* Display the click count */}
-            <p>Click Count: {url.clickCount}</p>
-            
-            {/* Display the creation time, formatted using moment.js */}
-            <p>Created At: {moment(url.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
-
             {/* Button to copy the short URL */}
             <button onClick={() => handleCopyUrl(url.shortUrl)}>Copy Short URL</button>
-            
             {/* Button to delete the URL */}
             <button onClick={() => handleDeleteUrl(url.id)}>Delete URL</button>
-            
             {/* Button to update the short URL */}
-            <button onClick={() => handleUpdateUrl(url.shortUrl)}>Update URL</button>
+            <button onClick={() => navigate(`/update/${url.shortUrl}`)}>Update URL</button>
           </li>
         ))}
       </ul>
