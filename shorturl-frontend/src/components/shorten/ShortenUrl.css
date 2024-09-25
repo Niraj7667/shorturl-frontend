@@ -1,0 +1,107 @@
+/* Container for the Shorten URL form */
+.shorten-url-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f7f9fc; /* Light background for contrast */
+  }
+  
+  /* Heading styling */
+  .shorten-url-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+  
+  /* Form styling */
+  .shorten-url-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .shorten-url-container label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Input field styling */
+  .shorten-url-container input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  
+  .shorten-url-container input:focus {
+    border-color: #0056b3; /* Darker blue when focused */
+  }
+  
+  /* Error message styling */
+  .shorten-url-container p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .shorten-url-container p.error {
+    color: red;
+  }
+  
+  /* Button styling */
+  .shorten-url-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+    outline: none;
+  }
+  
+  /* Button hover effect */
+  .shorten-url-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Short URL display styling */
+  .shorten-url-container .short-url-display {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .shorten-url-container .short-url-display p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Styling for the short URL link */
+  .shorten-url-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .shorten-url-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Copy button for short URL */
+  .shorten-url-container button.copy-btn {
+    background-color: #28a745; /* Green color for copy button */
+  }
+  
+  .shorten-url-container button.copy-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  

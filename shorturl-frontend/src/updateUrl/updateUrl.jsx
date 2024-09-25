@@ -1,7 +1,7 @@
-// UpdateUrl.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import './UpdateUrl.css'; // Import the CSS file
 
 const UpdateUrl = () => {
   const { shortUrl } = useParams(); // Get the short URL from the route params
@@ -41,10 +41,10 @@ const UpdateUrl = () => {
   };
 
   return (
-    <div>
+    <div className="update-url-container">
       <h1>Update Short URL</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>} {/* Success message */}
+      {error && <p className="error">{error}</p>}
+      {success && <p className="success">{success}</p>} {/* Success message */}
       <label htmlFor="newShortUrl">New Short URL:</label>
       <input
         type="text"

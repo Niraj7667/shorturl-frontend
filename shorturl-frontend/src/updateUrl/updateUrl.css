@@ -1,0 +1,80 @@
+/* General styling for the Update URL form */
+.update-url-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full height of the viewport */
+    background-color: #f4f7f6; /* Light background for contrast */
+  }
+  
+  /* Styling the heading */
+  .update-url-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling the error and success messages */
+  .update-url-container p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .update-url-container p.error {
+    color: red;
+  }
+  
+  .update-url-container p.success {
+    color: green;
+  }
+  
+  /* Styling the label */
+  .update-url-container label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Styling the input field */
+  .update-url-container input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 4px;
+    width: 300px;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  
+  /* Input focus state */
+  .update-url-container input:focus {
+    border-color: #0056b3; /* Darker blue when focused */
+  }
+  
+  /* Styling the buttons */
+  .update-url-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  /* Button hover state */
+  .update-url-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Back to dashboard button (alternative color) */
+  .update-url-container button:last-child {
+    background-color: #6c757d; /* Gray button for 'Back to Dashboard' */
+  }
+  
+  .update-url-container button:last-child:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+  }
+  

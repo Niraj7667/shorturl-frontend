@@ -1,31 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
-
-// Axios instance for API calls, automatically sends cookies (containing JWT)
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api', // Replace with your backend API URL
-  withCredentials: true, // Ensures cookies are sent with each request
-});
+import './ShortenUrl.css'; // Import the CSS file
 
 const ShortenUrl = () => {
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [error, setError] = useState('');
-  const [authenticated, setAuthenticated] = useState(false); // Authentication state
+  const [authenticated, setAuthenticated] = useState(false);
 
-  // Check if the user is authenticated by making a request to a protected endpoint
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const token = localStorage.getItem('jwtToken'); // Example of storing the token in localStorage
-
-        // Make the request with the token in the Authorization header
-        const response = await api.get('http://localhost:3000/auth/check', {
+        const token = localStorage.getItem('jwtToken');
+        const response = await axios.get('http://localhost:3000/auth/check', {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         if (response.data.message === 'Authenticated') {
           setAuthenticated(true);
@@ -42,7 +33,7 @@ const ShortenUrl = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // Reset error message
+    setError('');
 
     if (!authenticated) {
       setError('Please log in to shorten URLs.');
@@ -55,26 +46,24 @@ const ShortenUrl = () => {
     }
 
     try {
-  const token = localStorage.getItem('jwtToken'); // Retrieve the token from localStorage
-
-  // Make the POST request to shorten the URL with the JWT token in the Authorization header
-  const response = await api.post(
-    'http://localhost:3000/api/shorten',
-    { originalUrl },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`, // Send the JWT token
-      },
+      const token = localStorage.getItem('jwtToken');
+      const response = await axios.post(
+        'http://localhost:3000/api/shorten',
+        { originalUrl },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setShortUrl(`http://localhost:3000/${response.data.url.shortUrl}`);
+    } catch (err) {
+      setError('Failed to shorten the URL.');
+      console.error(err);
     }
-  );
-
-  setShortUrl(`http://localhost:3000/${response.data.url.shortUrl}`); // Full URL for the short URL
-} catch (err) {
-  setError('Failed to shorten the URL.');
-  console.error(err);
-}
   };
-  const navigate = useNavigate(); // Call the useNavigate hook at the top of your component
+
+  const navigate = useNavigate();
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shortUrl)
@@ -85,9 +74,9 @@ const ShortenUrl = () => {
         console.error('Failed to copy: ', err);
       });
   };
-  
+
   return (
-    <div>
+    <div className="shorten-url-container">
       <h1>URL Shortener</h1>
       {authenticated ? (
         <form onSubmit={handleSubmit}>
@@ -106,15 +95,15 @@ const ShortenUrl = () => {
         <p>Please log in to shorten URLs.</p>
       )}
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
 
       {shortUrl && (
-        <div>
+        <div className="short-url-display">
           <p>Shortened URL:</p>
           <a href={shortUrl} target="_blank" rel="noopener noreferrer">
             {shortUrl}
           </a>
-          <button onClick={copyToClipboard}>Copy URL</button>
+          <button className="copy-btn" onClick={copyToClipboard}>Copy URL</button>
         </div>
       )}
       <button onClick={() => navigate('/dashboard')}>Back to Dashboard</button>

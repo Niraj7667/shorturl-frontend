@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import './login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -54,10 +55,11 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+
+        <div className="input-group">
           <label>Username:</label>
           <input
             type="text"
@@ -67,7 +69,8 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+
+        <div className="input-group">
           <label>Email:</label>
           <input
             type="email"
@@ -77,7 +80,8 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+
+        <div className="input-group">
           <label>Password:</label>
           <input
             type="password"
@@ -87,14 +91,21 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+
+        <button className="login-button" type="submit">Login</button>
+
+        {message && <p className="message">{message}</p>}
+
+        <p>Don't have an account?</p>
+        <button className="signup-btn" onClick={handleNavigateToSignup}>
+          Go to Signup
+        </button>
       </form>
 
-      {message && <p>{message}</p>}
-
-      {/* Button to navigate to the signup page */}
-      <p>Don't have an account?</p>
-      <button onClick={handleNavigateToSignup}>Go to Signup</button>
+      {/* Optional image container for logo or illustration */}
+      {/* <div className="image-container">
+        <img src="your-logo.png" alt="Your Logo" />
+      </div> */}
     </div>
   );
 };

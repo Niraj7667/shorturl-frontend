@@ -1,0 +1,122 @@
+/* Center the login container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full-screen height */
+  background-color: #f0f0f0;
+}
+
+/* Form styling */
+.login-form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  .input-group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #000000;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      background-color: white;
+      color: black;
+
+      &:focus {
+        outline: none;
+        border-color: #007bff; /* Primary blue on focus */
+      }
+    }
+  }
+
+  .login-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+  }
+
+  /* Message styling */
+  .message {
+    text-align: center;
+    color: red;
+    margin-top: 1rem;
+  }
+
+  /* Navigation to signup */
+  p {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #333;
+    font-size: 1rem;
+  }
+
+  .signup-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #5a6268; /* Darker gray on hover */
+    }
+  }
+}
+
+/* Image container for logos or additional images */
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  
+  img {
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .login-form {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .image-container img {
+    max-width: 15rem;
+  }
+}

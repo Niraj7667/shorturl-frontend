@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import './signup.css'; // Import the CSS file
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const Signup = () => {
   });
 
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // Initialize the navigate hook
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,23 +25,18 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      // Send signup request to the backend
       const response = await axios.post("http://localhost:3000/auth/signup", formData, {
         withCredentials: true,
       });
       
-      // Store the JWT in localStorage
       const token = response.data.token;
       localStorage.setItem("jwtToken", token);
 
-      // Set Axios default authorization header
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      // Success message
       setMessage(response.data.message);
-      navigate('/dashboard'); // Navigate to the dashboard after signup
+      navigate('/dashboard');
     } catch (error) {
-      // Handle errors
       if (error.response && error.response.data.message) {
         setMessage(error.response.data.message);
       } else {
@@ -50,14 +46,15 @@ const Signup = () => {
   };
 
   const handleNavigateToLogin = () => {
-    navigate('/auth/login'); // Navigate to the login page
+    navigate('/auth/login');
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
+
+        <div className="input-group">
           <label>Username:</label>
           <input
             type="text"
@@ -67,7 +64,8 @@ const Signup = () => {
             required
           />
         </div>
-        <div>
+
+        <div className="input-group">
           <label>Email:</label>
           <input
             type="email"
@@ -77,7 +75,8 @@ const Signup = () => {
             required
           />
         </div>
-        <div>
+
+        <div className="input-group">
           <label>Password:</label>
           <input
             type="password"
@@ -87,14 +86,17 @@ const Signup = () => {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+
+        <button type="submit" className="login-button">Sign Up</button>
       </form>
 
       {message && <p>{message}</p>}
 
-      {/* Button to navigate to the login page */}
-      <p>Already have an account?</p>
-      <button onClick={handleNavigateToLogin}>Go to Login</button>
+      {/* Text and Login button in one row */}
+      <div className="login-row">
+        <p>Already have an account?</p>
+        <button onClick={handleNavigateToLogin} className="login-button">Login</button>
+      </div>
     </div>
   );
 };
