@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       // Send login request to the backend
-      const response = await axios.post("http://localhost:3000/auth/login", formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, formData, {
         withCredentials: true, // Include credentials (cookies) with the request
       });
       

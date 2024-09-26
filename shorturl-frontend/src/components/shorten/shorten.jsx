@@ -13,7 +13,7 @@ const ShortenUrl = () => {
     const checkAuth = async () => {
       try {
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.get('http://localhost:3000/auth/check', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/check`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -48,7 +48,7 @@ const ShortenUrl = () => {
     try {
       const token = localStorage.getItem('jwtToken');
       const response = await axios.post(
-        'http://localhost:3000/api/shorten',
+        `${import.meta.env.VITE_API_URL}/api/shorten`,
         { originalUrl },
         {
           headers: {
@@ -56,7 +56,7 @@ const ShortenUrl = () => {
           },
         }
       );
-      setShortUrl(`http://localhost:3000/${response.data.url.shortUrl}`);
+      setShortUrl(`${import.meta.env.VITE_API_URL}/${response.data.url.shortUrl}`);
     } catch (err) {
       setError('Failed to shorten the URL.');
       console.error(err);

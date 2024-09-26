@@ -21,7 +21,7 @@ const UpdateUrl = () => {
   
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/update/urls/${shortUrl}`, 
+        `${import.meta.env.VITE_API_URL}/api/update/urls/${shortUrl}`, 
         { newShortUrl },
         {
           headers: {

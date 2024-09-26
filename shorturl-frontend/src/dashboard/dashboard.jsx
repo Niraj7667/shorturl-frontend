@@ -8,7 +8,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 // Axios instance for API calls
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api', // Adjust to your backend API
+  baseURL: `${import.meta.env.VITE_API_URL}/api`, // Adjust to your backend API
   withCredentials: true, // Sends cookies (JWT)
 });
 
@@ -31,7 +31,7 @@ const Dashboard = () => {
         }
 
         // Fetch URLs
-        const response = await axios.get('http://localhost:3000/api/urls', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/urls`, {
           headers: {
             Authorization: `Bearer ${token}`, // JWT token for authorization
           },
@@ -63,7 +63,7 @@ const Dashboard = () => {
   const handleDeleteUrl = async (id) => {
     const token = localStorage.getItem('jwtToken');
     try {
-      await api.delete(`http://localhost:3000/delete/urls/${id}`, {
+      await api.delete(`${import.meta.env.VITE_API_URL}/delete/urls/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`, // JWT token for authorization
         },
@@ -79,7 +79,7 @@ const Dashboard = () => {
 
   // Function to copy the short URL
   const handleCopyUrl = (shortUrl) => {
-    navigator.clipboard.writeText(`http://localhost:3000/${shortUrl}`)
+    navigator.clipboard.writeText(`${import.meta.env.VITE_API_URL}/${shortUrl}`)
       .then(() => {
         alert('Shortened URL copied to clipboard!');
       })
@@ -95,7 +95,7 @@ const Dashboard = () => {
     if (newUrl) {
       const token = localStorage.getItem('jwtToken');
       try {
-        const response = await api.put(`http://localhost:3000/update/urls/${id}`, { longUrl: newUrl }, {
+        const response = await api.put(`${import.meta.env.VITE_API_URL}/update/urls/${id}`, { longUrl: newUrl }, {
           headers: {
             Authorization: `Bearer ${token}`, // JWT token for authorization
           },
@@ -146,7 +146,7 @@ const Dashboard = () => {
         <Button variant="contained" color="primary" onClick={handleNavigateToShorten} style={{ margin: '20px 0' }}>
           Shorten a New URL
         </Button>
-
+      
         <h2>Your URLs:</h2>
         <Box width="80%">
           {urls.map((url) => (
@@ -159,12 +159,12 @@ const Dashboard = () => {
               <p>
                 Short URL: 
                 <a 
-                  href={`http://localhost:3000/${url.shortUrl}`} 
+                  href={`${import.meta.env.VITE_API_URL}/${url.shortUrl}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   style={{ marginLeft: '5px', textDecoration: 'underline', color: 'blue' }}
                 >
-                  {`http://localhost:3000/${url.shortUrl}`}
+                  {`${import.meta.env.VITE_API_URL}/${url.shortUrl}`}
                 </a>
               </p>
               <p>Click Count: {url.clickCount}</p>
