@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import './UpdateUrl.css'; // Import the CSS file
+import './updateUrl.css'; // Import the CSS file
 
 const UpdateUrl = () => {
   const { shortUrl } = useParams(); // Get the short URL from the route params
