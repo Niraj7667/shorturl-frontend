@@ -151,38 +151,40 @@ const Dashboard = () => {
         <Box width="80%">
           {urls.map((url) => (
             <Paper 
-              key={url.id} 
-              elevation={3} 
-              style={{ padding: '20px', marginBottom: '20px', border: '1px solid #ccc' }}
-            >
-              <p>Long URL: {url.longUrl}</p>
-              <p>
-                Short URL: 
-                <a 
-                  href={`${import.meta.env.VITE_API_URL}/${url.shortUrl}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  style={{ marginLeft: '5px', textDecoration: 'underline', color: 'blue' }}
-                >
-                  {`${import.meta.env.VITE_API_URL}/${url.shortUrl}`}
-                </a>
-              </p>
-              <p>Click Count: {url.clickCount}</p>
-              <p>Created At: {moment(url.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
+            key={url.id} 
+            elevation={3} 
+            style={{ padding: '20px', marginBottom: '20px', border: '1px solid #ccc', display:'flex', flexDirection:'column', overflow:'hidden', textWrap:'wrap' }}
+          >
+            <p>Long URL: {url.longUrl}</p>
+            <p>
+              Short URL: 
+              <a 
+                href={`${import.meta.env.VITE_API_URL}/${url.shortUrl}`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ marginLeft: '5px', textDecoration: 'underline', color: 'blue', display: 'block' }}
+              >
+                {`${import.meta.env.VITE_API_URL}/${url.shortUrl}`}
+              </a>
+            </p>
+            <p>Click Count: {url.clickCount}</p>
+            <p>Created At: {moment(url.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
+          
+            {/* Button to copy the short URL */}
+            <Button onClick={() => handleCopyUrl(url.shortUrl)} variant="outlined" color="primary" style={{ marginRight: '10px' }}>
+              Copy Short URL
+            </Button>
 
-              {/* Button to copy the short URL */}
-              <Button onClick={() => handleCopyUrl(url.shortUrl)} variant="outlined" color="primary" style={{ marginRight: '10px' }}>
-                Copy Short URL
-              </Button>
-              {/* Button to delete the URL */}
-              <Button onClick={() => handleDeleteUrl(url.id)} variant="outlined" color="secondary" style={{ marginRight: '10px' }}>
-                Delete URL
-              </Button>
-              {/* Button to update the long URL */}
-              <Button onClick={() => navigate(`/update/${url.shortUrl}`)} variant="outlined" color="default">
-                Update URL
-              </Button>
-            </Paper>
+            {/* Button to delete the URL */}
+            <Button onClick={() => handleDeleteUrl(url.id)} variant="outlined" color="secondary" style={{ marginRight: '10px' }}>
+              Delete URL
+            </Button>
+            {/* Button to update the long URL */}
+            <Button onClick={() => navigate(`/update/${url.shortUrl}`)} variant="outlined" color="default">
+              Update URL
+            </Button>
+          </Paper>
+          
           ))}
         </Box>
       </Box>
