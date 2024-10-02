@@ -173,16 +173,16 @@ const Dashboard = () => {
             
             <div className='buttonContainer'>
             
-            <Button className='btn' onClick={() => handleCopyUrl(url.shortUrl)} variant="outlined" color="primary" style={{  margin:'1rem' }}>
+            <Button className='btn' onClick={() => handleCopyUrl(url.shortUrl)} variant="outlined" color="primary" style={{ width:'11rem', margin:'1rem' }}>
               Copy Short URL
             </Button>
 
            
-            <Button className='btn' onClick={() => handleDeleteUrl(url.id)} variant="outlined" color="secondary" style={{  margin:'1rem' }}>
+            <Button className='btn' onClick={() => handleDeleteUrl(url.id)} variant="outlined" color="secondary" style={{ width:'11rem',  margin:'1rem' }}>
               Delete URL
             </Button>
            
-            <Button className='btn' onClick={() => navigate(`/update/${url.shortUrl}`)} variant="outlined" color="default" style={{  margin:'1rem' }}>
+            <Button className='btn' onClick={() => navigate(`/update/${url.shortUrl}`)} variant="outlined" color="default" style={{ width:'11rem', margin:'1rem' }}>
               Update URL
             </Button>
             </div>
