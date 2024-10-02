@@ -8,10 +8,15 @@
     text-align: center;
   }
 
-  .urlContainer{
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    text-wrap: wrap;
+  .btn{
+    width: 3rem;
+    height: 2rem;
   }
-  
+
+  buttonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+  }

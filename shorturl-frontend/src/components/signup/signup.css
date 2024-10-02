@@ -77,4 +77,15 @@
   .login-row button {
     padding: 0.5rem 1rem;
   }
-  
+
+
+  @media (max-width: 768px) {
+  .login-form {
+    width: 60%;
+    padding: 1.5rem;
+  }
+
+  .image-container img {
+    max-width: 15rem;
+  }
+}

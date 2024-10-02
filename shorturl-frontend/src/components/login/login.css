@@ -112,7 +112,7 @@
 /* Responsive styling for smaller screens */
 @media (max-width: 768px) {
   .login-form {
-    width: 100%;
+    width: 75%;
     padding: 1.5rem;
   }
 

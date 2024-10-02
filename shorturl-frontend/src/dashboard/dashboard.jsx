@@ -153,7 +153,7 @@ const Dashboard = () => {
             <Paper 
             key={url.id} 
             elevation={3} 
-            style={{ padding: '20px', marginBottom: '20px', border: '1px solid #ccc', display:'flex', flexDirection:'column', overflow:'hidden', textWrap:'wrap' }}
+            style={{ padding: '20px', marginBottom: '20px', border: '1px solid #ccc', display:'flex', flexDirection:'column', overflow:'hidden', wordWrap:'break-word' }}
           >
             <p>Long URL: {url.longUrl}</p>
             <p>
@@ -170,19 +170,23 @@ const Dashboard = () => {
             <p>Click Count: {url.clickCount}</p>
             <p>Created At: {moment(url.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
           
-            {/* Button to copy the short URL */}
-            <Button onClick={() => handleCopyUrl(url.shortUrl)} variant="outlined" color="primary" style={{ marginRight: '10px' }}>
+            
+            <div className='buttonContainer'>
+            
+            <Button className='btn' onClick={() => handleCopyUrl(url.shortUrl)} variant="outlined" color="primary" style={{  margin:'1rem' }}>
               Copy Short URL
             </Button>
 
-            {/* Button to delete the URL */}
-            <Button onClick={() => handleDeleteUrl(url.id)} variant="outlined" color="secondary" style={{ marginRight: '10px' }}>
+           
+            <Button className='btn' onClick={() => handleDeleteUrl(url.id)} variant="outlined" color="secondary" style={{  margin:'1rem' }}>
               Delete URL
             </Button>
-            {/* Button to update the long URL */}
-            <Button onClick={() => navigate(`/update/${url.shortUrl}`)} variant="outlined" color="default">
+           
+            <Button className='btn' onClick={() => navigate(`/update/${url.shortUrl}`)} variant="outlined" color="default" style={{  margin:'1rem' }}>
               Update URL
             </Button>
+            </div>
+            
           </Paper>
           
           ))}
